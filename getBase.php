@@ -7,7 +7,7 @@ if($queryget -> execute())
 {
     $rows = $queryget->fetchAll();
     foreach($rows as $row) {
-        $array[] = ["name" => $row['nameeng'], "Vh" => $row['Vh'], "H" => $row['H'], "Dv" => $row['Dv'], "dv" => $row['d_v'],
+        $array[$row['nameeng']] = [ "Vh" => $row['Vh'], "H" => $row['H'], "Dv" => $row['Dv'], "dv" => $row['d_v'],
             "Lv" => $row['Lv'], "Lv2" => $row['Lv2'],
             "Lop" => $row['Lop'], "Ddv" => $row['Ddv'], "Lukl" => $row['Lukl'], "DeltaL" => $row['Deltal'], "Gv" => $row['Gv'],
             "V_e" => $row['Ve'], "Roh" => $row['Roh'], "Ro" => $row['Ro'],
