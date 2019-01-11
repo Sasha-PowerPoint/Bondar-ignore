@@ -1,0 +1,24 @@
+.base {
+  padding: 20px; }
+<<<<<<< HEAD
+=======
+
+.count-form {
+  padding: 5px;
+  padding-top: 0px; }
+  .count-form input {
+    margin-bottom: 4px; }
+
+.calculate {
+  position: absolute;
+  left: 0px;
+  top: 70px; }
+
+.nav-link:hover {
+  cursor: pointer; }
+
+.card:hover {
+  cursor: pointer; }
+>>>>>>> UIdev
+
+/*# sourceMappingURL=style.css.map */
