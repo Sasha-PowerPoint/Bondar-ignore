@@ -49,10 +49,10 @@ function ServeBlocksFromDatabase(){
         method: "POST",
         body: JSON.stringify(getCookie("id"))})
         .then(function(res){
-            return res.text();
+            return res.json();
         })
         .then(function(res){
-            console.log("getBase -----> " + res);
+            console.log(res);
             db_got = res;
             var fullTemplate = '';
             for(var obj in res){
@@ -71,7 +71,6 @@ function ServeBlocksFromDatabase(){
                     }else{
                         data[obj] = parseFloat(db_got[this.dataset.name][obj]);
                     }
-
                 }
                 console.log("--------------------");
                 console.log(data);
