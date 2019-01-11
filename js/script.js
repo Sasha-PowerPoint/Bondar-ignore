@@ -24,7 +24,7 @@ function SetDataToDatabase(name){
                 'Content-Type': 'application/json'
         },
         method: "POST",
-            body: JSON.stringify([name, data])
+            body: JSON.stringify({name: name,data: data})
         })
         .then(function(result){
             return result.text();
