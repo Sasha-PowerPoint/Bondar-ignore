@@ -30,7 +30,6 @@ function SetDataToDatabase(name){
             return result.text();
         })
         .then(function(res){
-            console.log(res);
         });
 };
 
@@ -48,9 +47,24 @@ function ServeBlocksFromDatabase(){
             document.getElementById('base_list').innerHTML = fullTemplate;
 
             $(".card").click(function(){
-                alert(this.dataset.name);
                 console.log(db_got[this.dataset.name]);
-                Calculate(db_got[this.dataset.name]);
+                $(".calculate").fadeIn(100);
+                $(".base").fadeOut(100);
+                for(let obj in db_got[this.dataset.name]){
+                    if(data[obj]){
+                        data[obj] = 0;
+                        data[obj] = parseFloat(db_got[this.dataset.name][obj]);
+                    }else{
+                        data[obj] = parseFloat(db_got[this.dataset.name][obj]);
+                    }
+
+                }
+                console.log("--------------------");
+                console.log(data);
+                console.log(db_got[this.dataset.name]);
+
+                console.log("--------------------");
+                DrawWithBDvalues(this.dataset.name);
             });
         });
 
@@ -67,7 +81,7 @@ function ServeBlocksFromDatabase(){
     }
 }
 
-function Calculate(data) {
+function Calculate() {
     data.V_e = 2;
     data.Roh = 1.24 * Math.pow(1 - (data.H / 44300), 4.256);
     data.Ro = data.Roh * (1 + 0.5 * Math.pow(data.Vh / 310, 2) * (1 - Math.pow(data.V_e, 2)));
@@ -108,9 +122,20 @@ function Calculate(data) {
     Yvi1();
     Yop2_draw();
     Radius();
-    DrawDesc();
 };
-
+function DrawWithBDvalues(name){
+    DrawDesc(name);
+    $(".form-group").fadeOut(100);
+    ctx.fillStyle = "white";
+    ctx.fillRect(0, 0, document.getElementById("canvas").width, document.getElementById("canvas").height);
+    Yv();
+    Yv2();
+    Yop();
+    Yvnesh();
+    Yvi1();
+    Yop2_draw();
+    Radius();
+}
 
 function GetBase(){
     var xhr = new XMLHttpRequest();
@@ -118,46 +143,14 @@ function GetBase(){
     xhr.send();
     xhr.onreadystatechange = function() {
         if (xhr.readyState == 4 && xhr.status == 200){
-            console.error("Получено get");
-            console.log(xhr.responseText);
         }
     };
 }
-function SendToBase(){
-    var dani = {};
-    dani.data = data;
-    dani.data = data;
-   // alert(data.name);
-    base[data.name] = dani;
-    //   console.log(base);
-    var xhr = new XMLHttpRequest();
-    xhr.open("POST", "saveItem.php", true);
-    xhr.send("json=" + JSON.stringify(dani));
- //   console.log("Отправлено");
- //   console.log("json=" + JSON.stringify(dani));
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState == 4 && xhr.status == 200){
-            console.log("Получено");
-            console.log(xhr.responseText);
-        }
-    };
-}
-function Refill(name){
-    console.log("gat = " + name );
-    for(var i in base[name].data){
-        data[i] = base[name].data[i];
-        console.log("name = " + i);
-        console.log("data[i] = " + data[i]);
-        console.log("base[name].data[i] = "+ base[name].data[i]);
-    }
-    for(var j in base[name].data){
-        data[j] = base[name].data[j];
-    }
-}
-function DrawDesc(){
-    var desc = $(".canvas_desc");
-    $("#canvas_name").html(data.name);
+
+function DrawDesc(name){
+    var desc = $("#draw_desc");
     $(desc).html(
+        "<h2>" + name + "</h2>" +
         "<li>" + "L = "+ data.L.toFixed(3) +"</li>" +
         "<li>" + "De = "+ data.De.toFixed(3) +"</li>" +
         "<li>" + "Dm = "+ data.Dm.toFixed(3) +"</li>" +
@@ -375,13 +368,14 @@ document.getElementById('base').addEventListener("click",function() {
 });
 
 document.getElementById('calculate').addEventListener("click",function() {
+    $(".form-group").fadeIn(100);
     $(".calculate").fadeIn(100);
     $(".base").fadeOut(100);
 });
 
 document.getElementById("count").addEventListener("click",function(){
     data.name = $("#name_of_engine").val();
-    data.Vh = parseFloat($("#vh").val())/3;
+    data.Vh = parseFloat($("#vh").val());
     data.H = parseFloat($("#h").val());
     data.Dv = parseFloat($("#dv").val());
     data.dv = parseFloat($("#dv2").val());
@@ -392,8 +386,9 @@ document.getElementById("count").addEventListener("click",function(){
     data.Lukl = parseFloat($("#lukl").val());
     data.DeltaL = parseFloat($("#deltal").val());
     data.Gv = parseFloat($("#gv").val());
-    Calculate(data);
+    Calculate();
     SetDataToDatabase(data.name);
+    DrawDesc(data.name);
 });
 
 $(".nav-link").click(function(){
