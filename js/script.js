@@ -21,7 +21,7 @@ function SetDataToDatabase(name){
     fetch("saveItem.php" ,{
         headers: {
             'Accept': 'application/json',
-                'Content-Type': 'application/json'
+            'Content-Type': 'application/json'
         },
         method: "POST",
             body: JSON.stringify({name: name,data: data})
@@ -32,12 +32,10 @@ function SetDataToDatabase(name){
         .then(function(res){
             console.log(res);
         });
-
-    
 };
 
 function ServeBlocksFromDatabase(){
-    fetch("getBase_new.php")
+    fetch("getBase.php")
         .then(function(res){
             return res.json();
         })
@@ -52,6 +50,7 @@ function ServeBlocksFromDatabase(){
             $(".card").click(function(){
                 alert(this.dataset.name);
                 console.log(db_got[this.dataset.name]);
+                Calculate(db_got[this.dataset.name]);
             });
         });
 
@@ -65,10 +64,9 @@ function ServeBlocksFromDatabase(){
             "            </div>" +
             "        </div>"
         return template;
-
     }
-
 }
+
 function Calculate(data) {
     data.V_e = 2;
     data.Roh = 1.24 * Math.pow(1 - (data.H / 44300), 4.256);
@@ -101,7 +99,8 @@ function Calculate(data) {
     data.TgBx = (Math.pow(data.Ddv, 2) - Math.pow(data.dv, 2)) / (2 * data.Ddv * data.Lop);
     data.F2 = (Math.PI / 4) * (Math.pow(data.Ddv, 2) - 4 * Math.pow(Yop2(0), 2));
     console.log(data);
-
+    ctx.fillStyle = "white";
+    ctx.fillRect(0, 0, document.getElementById("canvas").width, document.getElementById("canvas").height);
     Yv();
     Yv2();
     Yop();
