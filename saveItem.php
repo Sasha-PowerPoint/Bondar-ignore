@@ -1,10 +1,10 @@
 <?php
 
 
-
 $contentType = isset($_SERVER["CONTENT_TYPE"]) ? trim($_SERVER["CONTENT_TYPE"]) : '';
 
-if ($contentType === "application/json") {
+
+if ($contentType === "application/text") {
     //Receive the RAW post data.
     $content = trim(file_get_contents("php://input"));
 
@@ -28,14 +28,14 @@ if ($contentType === "application/json") {
         "Romin"=>$arr['data']['Ro_min'], "Fmin"=>$arr['data']['Fmin'], "LopLop1"=>$arr['data']['Lop_Lop1'], "c"=>$arr['data']['c'], "k"=>$arr['data']['k'],
         "Dmin"=>$arr['data']['Dmin'], "R"=>$arr['data']['R'], "Tgbx"=>$arr['data']['TgBx'], "F2"=>$arr['data']['F2'], "userid" => $arr['id']
     ];
-    $querysave = $pdodb->prepare("INSERT INTO savedeng SET nameeng=:nameeng, Vh=:Vh, H=:H, Dv=:Dv, d_v=:d_v,	Lv=:Lv, Lv2=:Lv2, Lop=:Lop, Ddv=:Ddv, Lukl=:Lukl, Deltal=:Deltal, Gv=:Gv, Ve=:Ve, Roh=:Roh, Ro=:Ro, k2=:k2, k4=:k4, L=:L, Fe=:Fe, Fet=:Fet, De=:De, Dm=:Dm, Delta=:Delta, Romin=:Romin, Fmin=:Fmin, LopLop1=:LopLop1, c=:c, k=:k, Dmin=:Dmin, R=:R, Tgbx=:Tgbx, F2=:F2, userid=:id");
+    $querysave = $pdodb->prepare("INSERT INTO savedeng SET nameeng=:nameeng, Vh=:Vh, H=:H, Dv=:Dv, d_v=:d_v,	Lv=:Lv, Lv2=:Lv2, Lop=:Lop, Ddv=:Ddv, Lukl=:Lukl, Deltal=:Deltal, Gv=:Gv, Ve=:Ve, Roh=:Roh, Ro=:Ro, k2=:k2, k4=:k4, L=:L, Fe=:Fe, Fet=:Fet, De=:De, Dm=:Dm, Delta=:Delta, Romin=:Romin, Fmin=:Fmin, LopLop1=:LopLop1, c=:c, k=:k, Dmin=:Dmin, R=:R, Tgbx=:Tgbx, F2=:F2, userid=:userid");
     if($querysave -> execute($params))
     {
 
-       echo $arr['data']['Lop_Lop1'];
+       print_r($arr);
     }
     else{
-        print_r(json_decode($_POST['json']));
+        print_r($content );
     }
 
 } else {

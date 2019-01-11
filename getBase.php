@@ -1,9 +1,10 @@
 <?php
 $contentType = isset($_SERVER["CONTENT_TYPE"]) ? trim($_SERVER["CONTENT_TYPE"]) : '';
 
-if ($contentType === "application/string") {
+if ($contentType === "application/text") {
     //Receive the RAW post data.
     $content = trim(file_get_contents("php://input"));
+
 
 
 
@@ -11,9 +12,9 @@ if ($contentType === "application/string") {
 
     $pdodb = new PDO('mysql:host=localhost; dbname=bondardb', 'root', '');
     $pdodb->exec("SET NAMES UTF8 ");
-    $params = ["id" => $content];
-    $queryget = $pdodb->prepare("SELECT * FROM savedeng WHERE userid=:id");
-    if ($queryget->execute()) {
+    $params = ["userid" => json_decode($content)];
+    $queryget = $pdodb->prepare("SELECT * FROM savedeng WHERE userid=:userid");
+    if ($queryget->execute($params)) {
         $rows = $queryget->fetchAll();
         foreach ($rows as $row) {
             $array[$row['nameeng']] = ["Vh" => $row['Vh'], "H" => $row['H'], "Dv" => $row['Dv'], "dv" => $row['d_v'],
@@ -26,12 +27,15 @@ if ($contentType === "application/string") {
                 "Dmin" => $row['Dmin'], "R" => $row['R'], "TgBx" => $row['Tgbx'], "F2" => $row['F2']
             ];
         }
+        $fp = fopen("mylog.txt", "w");
+        fwrite($fp, json_encode($array));
+        fclose("mylog.txt");
         echo json_encode($array);
     } else {
         print_r('Error in PHP code');
     }
 }
 else{
-        echo "error";
+        var_dump($contentType);
     }
 ?>
