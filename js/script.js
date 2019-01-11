@@ -11,20 +11,27 @@ var center = {
     height: document.getElementById("canvas").height/2
 };
 
+alert(getCookie("id"));
 var data = {};
 var base = {};
 var koef =250;
 var db_got =[];
 
-/*, */
+function getCookie(name) {
+    var value = "; " + document.cookie;
+    var parts = value.split("; " + name + "=");
+    if (parts.length === 2) return parts.pop().split(";").shift();
+}
+
+
 function SetDataToDatabase(name){
     fetch("saveItem.php" ,{
         headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
+            'Accept': 'application/text',
+            'Content-Type': 'application/text'
         },
         method: "POST",
-            body: JSON.stringify({name: name,data: data})
+            body: JSON.stringify({id: getCookie("id"), name: name,data: data})
         })
         .then(function(result){
             return result.text();
@@ -34,11 +41,18 @@ function SetDataToDatabase(name){
 };
 
 function ServeBlocksFromDatabase(){
-    fetch("getBase.php")
+    fetch("getBase.php",{
+        headers: {
+            'Accept': 'application/text',
+            'Content-Type': 'application/text'
+        },
+        method: "POST",
+        body: JSON.stringify(getCookie("id"))})
         .then(function(res){
-            return res.json();
+            return res.text();
         })
         .then(function(res){
+            console.log("getBase -----> " + res);
             db_got = res;
             var fullTemplate = '';
             for(var obj in res){
