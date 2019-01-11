@@ -1,0 +1,50 @@
+@media screen and (max-width: 1920px){
+
+}
+@media screen and (max-width: 1800px){
+
+}
+@media screen and (max-width: 1700px){
+
+}
+@media screen and (max-width: 1600px){
+
+}
+@media screen and (max-width: 1500px){
+
+}
+/*Обрати внимание на комент*/
+/*Это стили перехода очень важные Большинство ноутов имеют разрешения от 1300 до 1400 пикселей, поэтому на медиа запросе max-width 1400 нужно максимально приблизить отображение к экрану, менять структуру страницы и адаптировать как хочется можно с разрешения 1300 и меньше пикселей*/
+@media screen and (max-width: 1400px){
+
+}
+@media screen and (max-width: 1300px){
+
+}
+@media screen and (max-width: 1200px){
+	
+}
+@media screen and (max-width: 1100px){
+	
+}
+/*Переход на устройство - планшет*/
+@media screen and (max-width: 992px){
+	
+}
+@media screen and (max-width: 800px){
+
+}
+@media screen and (max-width: 700px){
+
+}
+@media screen and (max-width: 600px){
+	
+}
+/*переход на устройство телефон*/ 
+@media screen and (max-width: 500px){
+	
+}
+@media screen and (max-width: 425px){
+	
+}
+
