@@ -1,7 +1,7 @@
 <?php
 $contentType = isset($_SERVER["CONTENT_TYPE"]) ? trim($_SERVER["CONTENT_TYPE"]) : '';
 
-if ($contentType === "application/sring") {
+if ($contentType === "application/srting") {
     //Receive the RAW post data.
     $content = trim(file_get_contents("php://input"));
 
