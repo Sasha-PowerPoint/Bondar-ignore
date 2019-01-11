@@ -18,6 +18,7 @@ if($count != 0)
     $user = $queryget->fetch();
     setcookie("user", $user['username']);
     setcookie("password", $user['password']);
+    setcookie("id", $user['useruniqueident']);
     header("location: main.html");
     }
     else {
