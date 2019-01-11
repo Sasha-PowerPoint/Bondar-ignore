@@ -47,7 +47,7 @@ function ServeBlocksFromDatabase(){
             'Content-Type': 'application/text'
         },
         method: "POST",
-        body: JSON.stringify(getCookie("id"))})
+        body: (getCookie("id"))})
         .then(function(res){
             return res.text();
         })
