@@ -29,7 +29,7 @@ if ($contentType === "application/text") {
         }
         $fp = fopen("mylog.txt", "w");
         fwrite($fp, json_encode($array));
-        fclose("mylog.txt");
+        fclose($fp);
         echo json_encode($array);
     } else {
         print_r('Error in PHP code');
