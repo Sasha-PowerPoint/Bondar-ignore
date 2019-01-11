@@ -27,8 +27,8 @@ function getCookie(name) {
 function SetDataToDatabase(name){
     fetch("saveItem.php" ,{
         headers: {
-            'Accept': 'application/text',
-            'Content-Type': 'application/text'
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
         },
         method: "POST",
             body: JSON.stringify({id: getCookie("id"), name: name,data: data})
@@ -43,11 +43,11 @@ function SetDataToDatabase(name){
 function ServeBlocksFromDatabase(){
     fetch("getBase.php",{
         headers: {
-            'Accept': 'application/text',
-            'Content-Type': 'application/text'
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
         },
         method: "POST",
-        body: (getCookie("id"))})
+        body: JSON.stringify(getCookie("id"))})
         .then(function(res){
             return res.text();
         })
