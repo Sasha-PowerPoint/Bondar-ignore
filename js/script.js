@@ -24,7 +24,7 @@ function SetDataToDatabase(name){
                 'Content-Type': 'application/json'
         },
         method: "POST",
-            body: JSON.stringify(data)
+            body: JSON.stringify([name, data])
         })
         .then(function(result){
             return result.text();
@@ -51,6 +51,7 @@ function ServeBlocksFromDatabase(){
 
             $(".card").click(function(){
                 alert(this.dataset.name);
+                console.log(db_got[this.dataset.name]);
             });
         });
 
@@ -68,7 +69,7 @@ function ServeBlocksFromDatabase(){
     }
 
 }
-function Calculate() {
+function Calculate(data) {
     data.V_e = 2;
     data.Roh = 1.24 * Math.pow(1 - (data.H / 44300), 4.256);
     data.Ro = data.Roh * (1 + 0.5 * Math.pow(data.Vh / 310, 2) * (1 - Math.pow(data.V_e, 2)));
@@ -392,7 +393,7 @@ document.getElementById("count").addEventListener("click",function(){
     data.Lukl = parseFloat($("#lukl").val());
     data.DeltaL = parseFloat($("#deltal").val());
     data.Gv = parseFloat($("#gv").val());
-    Calculate();
+    Calculate(data);
     SetDataToDatabase(data.name);
 });
 
