@@ -48,12 +48,14 @@ if($count != 0)
 </head>
 <body style="display: flex; align-items: center; justify-content: center; padding-top: 150px; flex-direction: column;">
     <h2 class="text-primary">NeedLe</h2>
+    <form action="index.php" method="POST" style="display: flex; align-items: center; justify-content: center; flex-direction: column">
     <div class="form-group row">
           <input style="width: 300px" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Введіть ваш нікнейм" name="name">
         </div>
         <div class="form-group row">
           <input style="width: 300px" type="password" class="form-control" id="exampleInputPassword1" placeholder="Пароль" name="password">
         </div>
-        <button style="width: 300px" type="submit" class="btn btn-primary">Submit</button>
+        <button name="submit" style="width: 300px" type="submit" class="btn btn-primary">Submit</button>
+     </form>
 </body>
 </html>
