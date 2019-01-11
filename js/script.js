@@ -18,17 +18,19 @@ var db_got =[];
 
 /*, */
 function SetDataToDatabase(name){
-    fetch("saveItem.php",{
-        method: 'POST',
-        credentials: 'same-origin',
+    fetch("saveItem.php" ,{
         headers: {
             'Accept': 'application/json',
-            'Content-Type': 'application/json'
+                'Content-Type': 'application/json'
         },
-        body: JSON.stringify(data)})
+        method: "POST",
+            body: JSON.stringify(data)
+        })
         .then(function(result){
-            db_got[name] = data;
-            console.log(result);
+            return result.text();
+        })
+        .then(function(res){
+            console.log(res);
         });
 
     
