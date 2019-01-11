@@ -1,9 +1,7 @@
 <?php
 $contentType = isset($_SERVER["CONTENT_TYPE"]) ? trim($_SERVER["CONTENT_TYPE"]) : '';
-$fp = fopen("mylog.txt", "w");
-fwrite($fp, $contentType);
-fclose($fp);
-if ($contentType === "application/text") {
+
+if ($contentType === "application/json") {
     //Receive the RAW post data.
     $content = trim(file_get_contents("php://input"));
 
