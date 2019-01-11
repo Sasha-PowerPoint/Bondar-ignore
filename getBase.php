@@ -1,6 +1,8 @@
 <?php
 $contentType = isset($_SERVER["CONTENT_TYPE"]) ? trim($_SERVER["CONTENT_TYPE"]) : '';
-
+$fp = fopen("mylog.txt", "w");
+fwrite($fp, $contentType);
+fclose($fp);
 if ($contentType === "application/text") {
     //Receive the RAW post data.
     $content = trim(file_get_contents("php://input"));
@@ -27,9 +29,7 @@ if ($contentType === "application/text") {
                 "Dmin" => $row['Dmin'], "R" => $row['R'], "TgBx" => $row['Tgbx'], "F2" => $row['F2']
             ];
         }
-        $fp = fopen("mylog.txt", "w");
-        fwrite($fp, json_encode($array));
-        fclose($fp);
+
         echo json_encode($array);
     } else {
         print_r('Error in PHP code');
