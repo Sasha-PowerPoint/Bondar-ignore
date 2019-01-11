@@ -17,30 +17,39 @@
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" >NeedLe</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarColor02">
+    <div class="navbar-collapse" id="navbarColor02">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
                 <a class="nav-link" id="base">База</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" id="calculate">Розрахувати</a>
+                <a class="nav-link active" id="calculate">Розрахувати</a>
             </li>
         </ul>
     </div>
 </nav>
 <div class="base container-fluid">
+    <div class="row" id="base_list">
+    </div>
+</div>
+<div class="calculate container-fluid">
     <div class="row">
-        <div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
-            <div class="card-header">Header</div>
-            <div class="card-body">
-                <h4 class="card-title">Primary card title</h4>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            </div>
+        <div class="form-group count-form mb-3">
+            <input class="form-control" id="name_of_engine" placeholder="Назва">
+            <input class="form-control" id="vh" placeholder="Vн" value ="660">
+            <input class="form-control" id="h" placeholder="Н" value ="7000">
+            <input class="form-control" id="dv" placeholder="Dв" value ="0.4">
+            <input class="form-control" id="dv2" placeholder="dв" value ="0.2">
+            <input class="form-control" id="lv" placeholder="Lв" value ="0.6">
+            <input class="form-control" id="lv2" placeholder="Lв2" value ="0.2">
+            <input class="form-control" id="lop" placeholder="Lop" value ="0.3">
+            <input class="form-control" id="ddv" placeholder="Dдв" value ="0.35">
+            <input class="form-control" id="lukl" placeholder="Lукл" value = "0.2">
+            <input class="form-control" id="deltal" placeholder="ΔL" value="0.04">
+            <input class="form-control" id="gv" placeholder="Gв" value="18">
+            <button type="button" class="btn btn-primary" id="count">Розрахувати</button>
         </div>
+        <canvas id="canvas" class="mb-9" width="400" height="200"></canvas>
     </div>
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

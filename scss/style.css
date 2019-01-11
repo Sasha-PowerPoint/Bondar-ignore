@@ -1,4 +1,9 @@
-body {
-  vertical-align: center; }
+.base {
+  padding: 20px; }
+
+.count-form {
+  padding: 20px; }
+  .count-form input {
+    margin-bottom: 5px; }
 
 /*# sourceMappingURL=style.css.map */

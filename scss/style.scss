@@ -1,4 +1,22 @@
 .base{
   padding: 20px;
 }
+.count-form{
+  padding:5px;
+  padding-top: 0px;
+  input{
+    margin-bottom: 4px;
+  }
+}
+.calculate{
+  position: absolute;
+  left: 0px;
+  top: 70px;
+}
+.nav-link:hover{
+  cursor:pointer;
+}
 
+.card:hover{
+  cursor: pointer;
+}
