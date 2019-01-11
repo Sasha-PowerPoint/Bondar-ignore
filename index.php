@@ -19,7 +19,7 @@ if($count != 0)
     setcookie("user", $user['username']);
     setcookie("password", $user['password']);
     setcookie("id", $user['useruniqueident']);
-    header("location: main.html");
+    header("location: main.php");
     }
     else {
         echo "Invalid data";
