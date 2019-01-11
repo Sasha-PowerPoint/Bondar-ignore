@@ -13,7 +13,7 @@ if($queryget -> execute())
             "V_e" => $row['Ve'], "Roh" => $row['Roh'], "Ro" => $row['Ro'],
             "k2" => $row['k2'], "k4" => $row['k4'], "L" => $row['L'], "Fe" => $row['Fe'], "Fe_t" => $row['Fet'],
             "De" => $row['De'], "Dm" => $row['Dm'], "Delta" => $row['Delta'],
-            "Ro_min" => $row['Romin'], "Fmin" => $row['Fmin'], "Lop_lop1" => $row['LopLop1'], "c" => $row['c'], "k" => $row['k'],
+            "Ro_min" => $row['Romin'], "Fmin" => $row['Fmin'], "Lop_Lop1" => $row['LopLop1'], "c" => $row['c'], "k" => $row['k'],
             "Dmin" => $row['Dmin'], "R" => $row['R'], "TgBx" => $row['Tgbx'], "F2" => $row['F2']
         ];
     }
